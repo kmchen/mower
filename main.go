@@ -72,6 +72,12 @@ func readFile(path string) {
 	for scanner.Scan() {
 		coordinates := strings.Split(scanner.Text(), " ")
 		x, y, direction := getStartPoint(coordinates)
+
+		if outOfBound(x, y) {
+			fmt.Printf("Starting point (%v, %v) are already out of bound, continue with next mower\n", x, y)
+			scanner.Scan()
+			continue
+		}
 		scanner.Scan()
 		moves := strings.Split(scanner.Text(), " ")
 
